@@ -41,11 +41,10 @@ for i in tqdm(range(len(posting_hrefs))):
         text = text[0:text.rfind("\n")]
     else:
         text = ''
-    postings_descrs.append(posting_descr)
+    postings_descrs.append(text)
 
-with open('secure_copy.txt', 'w') as f:
-    f.write(json.dumps(postings_descrs))
 postings_data['description'] = postings_descrs
 postings_data.to_csv('job_postings.csv', index=False, encoding='utf-8-sig')
+
 driver.quit()
 

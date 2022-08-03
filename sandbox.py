@@ -1,4 +1,7 @@
+import pandas as pd
 
-s = "String with\nsome\nnewlines to answer\non StackOverflow.\nThis line gets removed"
-print(s[0:s.rfind("\n")])
+df = pd.read_csv('job_postings.csv')
+descrs = df['description'].to_list()
+
+print(descrs[0])
 
