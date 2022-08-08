@@ -10,7 +10,7 @@ from nltk.corpus import stopwords
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.manifold import TSNE
+from sklearn.decomposition import TruncatedSVD
 import itertools
 
 # nltk.download('punkt')
@@ -51,19 +51,24 @@ def preprocess_corpus(text_corpus):
 # plt.show()
 
 preprocessed_text = preprocess_corpus(corpus)
-preprocessed_text = list(itertools.chain.from_iterable(preprocessed_text))
+df['description_preprocessed'] = preprocessed_text
+df.drop(['posting_href'], axis=1, inplace=True)
+df.to_csv('job_postings.csv', index=False, encoding='utf-8-sig')
 
-words = " ".join(preprocessed_text) + " "
-
-wordcloud = WordCloud(width=800, height=800,
-                      background_color='white',
-                      min_font_size=10).generate(words)
-
-plt.figure(figsize=(8, 8), facecolor=None)
-plt.imshow(wordcloud)
-plt.axis("off")
-plt.tight_layout(pad=0)
-plt.show()
-
-# plt.hist(descrs_length, bins=30)
+# preprocessed_text = [" ".join(descr) for descr in preprocessed_text]
+# preprocessed_text = list(itertools.chain.from_iterable(preprocessed_text))
+#
+# words = " ".join(preprocessed_text) + " "
+#
+# wordcloud = WordCloud(width=800, height=800,
+#                       background_color='white',
+#                       min_font_size=10).generate(words)
+#
+# plt.figure(figsize=(8, 8), facecolor=None)
+# plt.imshow(wordcloud)
+# plt.axis("off")
+# plt.tight_layout(pad=0)
 # plt.show()
+
+
+
