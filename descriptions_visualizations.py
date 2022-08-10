@@ -115,10 +115,12 @@ print(f'Accuracy: {accuracy_score(model.predict(X_test), y_test)}, f1: {f1_score
 print(classification_report(model.predict(X_test), y_test,
                             target_names=['not interested', 'interested']))
 
+model.fit(corpus, y)
+print(classification_report(model.predict(corpus), y,
+                            target_names=['not interested', 'interested']))
+
 # print(search.best_params_)
 # model.fit(corpus, y)
 # joblib.dump(model, 'kneighbors.pkl')
 # model = joblib.load('kneighbors.pkl')
-# print(classification_report(model.predict(X_test), y_test,
-#                             target_names=['not interested', 'interested']))
 
