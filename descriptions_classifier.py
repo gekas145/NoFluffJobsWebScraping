@@ -28,19 +28,6 @@ df['interest'] = df.apply(lambda x: get_interest(x['main_category']), axis=1)
 
 corpus = df['description_preprocessed'].to_list()
 
-
-
-
-# vectorizer = DenseTfidfVectorizer()
-# vectorizer = CountVectorizer()
-# X = vectorizer.fit_transform(corpus)
-
-# pca = PCA(n_components=20)
-
-# model = Pipeline([('vectorize', TfidfVectorizer()),
-#                   ('svd', TruncatedSVD(random_state=123)),
-#                   ('clf', KNeighborsClassifier(weights='uniform', metric='minkowski'))])
-
 model = Pipeline([('vectorize', TfidfVectorizer()),
                   ('svd', TruncatedSVD(random_state=123)),
                   ('clf', KNeighborsClassifier())])
@@ -61,9 +48,6 @@ search = GridSearchCV(model, params,
                       verbose=5)
 search.fit(X_train, y_train)
 model = search.best_estimator_
-
-# sns.scatterplot(x=X_pca[:, 0], y=X_pca[:, 1], hue=df['interest'])
-# plt.show()
 
 
 print('Train')
