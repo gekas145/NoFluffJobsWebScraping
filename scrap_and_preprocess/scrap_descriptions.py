@@ -10,10 +10,11 @@ import time
 
 # script for collecting job postings descriptions
 
-postings_data = pd.read_csv('job_postings.csv')
+postings_data = pd.read_csv('../job_postings.csv')
+# this column was deleted from final version of the dataset
 posting_hrefs = postings_data['posting_href'].to_list()
 
-service = Service("chromedriver.exe")
+service = Service("../chromedriver.exe")
 options = webdriver.ChromeOptions()
 # options.add_argument("--headless")
 driver = webdriver.Chrome(service=service, options=options)

@@ -10,7 +10,7 @@ from nltk.corpus import stopwords
 # nltk.download('stopwords')
 
 
-df = pd.read_csv('job_postings.csv')
+df = pd.read_csv('../job_postings.csv')
 df = df[df.description.notna()]
 corpus = df['description'].to_list()
 

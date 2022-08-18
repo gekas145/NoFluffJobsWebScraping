@@ -1,21 +1,14 @@
-import numpy as np
 import pandas as pd
-import seaborn as sns
-from sklearn.feature_extraction.text import CountVectorizer
-import matplotlib.pyplot as plt
-from wordcloud import WordCloud
+import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.decomposition import TruncatedSVD, PCA
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report, f1_score, accuracy_score, confusion_matrix
-from sklearn.model_selection import train_test_split, RandomizedSearchCV, StratifiedKFold, GridSearchCV
+from sklearn.decomposition import TruncatedSVD
+from sklearn.metrics import classification_report, f1_score, accuracy_score
+from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import Pipeline
-from dense_tfidf_vectorizer import DenseTfidfVectorizer
-import joblib
 
-df = pd.read_csv('job_postings.csv')
+
+df = pd.read_csv('../job_postings.csv')
 
 
 def get_interest(x):
@@ -65,5 +58,5 @@ print(classification_report(model.predict(corpus), y,
 
 print(search.best_params_)
 
-joblib.dump(model, 'kneighbors.pkl')
+joblib.dump(model, '../kneighbors.pkl')
 
